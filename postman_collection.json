@@ -1,0 +1,39 @@
+{
+  "info": {
+    "name": "Anime YouTube Factory",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{base}}/health"
+      }
+    },
+    {
+      "name": "Create job",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"topic\":\"A shy fox discovers a floating library\",\"languages\":[\"en\",\"es\"],\"make_shorts\":true}"
+        },
+        "url": "{{base}}/jobs"
+      }
+    },
+    {
+      "name": "List jobs",
+      "request": {
+        "method": "GET",
+        "url": "{{base}}/jobs"
+      }
+    }
+  ]
+}
