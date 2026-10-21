@@ -14,7 +14,7 @@ def youtube_service():
     if not creds or not creds.valid:
         flow=InstalledAppFlow.from_client_secrets_file(str(secret),SCOPES)
         #creds=flow.run_local_server(port=0)
-        creds = flow.run_local_server( host="0.0.0.0",  port=8080, open_browser=False)
+        creds = flow.run_local_server( host="0.0.0.0",  port=8080, open_browser=False,authorization_prompt_message="Please visit this URL to authorize this application: {url}",success_message="You have successfully authorized the application. You can close this browser tab.")
         token.parent.mkdir(parents=True,exist_ok=True);token.write_text(creds.to_json())
     return build("youtube","v3",credentials=creds)
 def upload_video(path,title,description,tags=None,privacy_status="private",publish_at=None):
