@@ -3,15 +3,15 @@
 Dockerized human-supervised production starter for original anime-inspired children's stories.
 
 ## Run
-1. `cp .env.example .env`; set `GROQ_API_KEY`.
+1. `cp .env.example .env`; set `GROQ_API_KEY` and either `STABILITY_API_KEY` or `OPENAI_API_KEY` for unique anime artwork per scene.
 2. `docker compose up --build`
 3. Dashboard http://localhost:8501; API docs http://localhost:8000/docs.
 4. Create an episode. Review files under `data/jobs/<id>/`, approve, then upload.
 
 ## Features
-FastAPI, Streamlit dashboard, Groq script/story metadata generation, multilingual Edge TTS, FFmpeg 16:9 episode and 9:16 teaser, SVG story-card visual fallback, optional Runway adapter, YouTube OAuth upload, SQLite persistence, budget estimate guard and tests.
+FastAPI, Streamlit dashboard, Groq script/story metadata generation, multilingual Edge TTS, FFmpeg 16:9 episode and 9:16 teaser, per-scene AI anime image generation (Stability AI or OpenAI Images), Ken Burns camera motion, optional Runway adapter, YouTube OAuth upload, SQLite persistence, budget estimate guard and tests.
 
-The fallback is animated story cards, not full anime animation. Connect an image-generation service and validate Runway's current API schema to get actual character animation. This project is a runnable foundation; external credentials and account setup are required.
+Actual anime artwork is generated separately for every scene. Configure `STABILITY_API_KEY` or `OPENAI_API_KEY`. The renderer fails clearly instead of silently producing placeholder cards. Each still receives subtle camera motion and is synchronized with narration. This creates an anime-style narrated video, not full AI-generated character motion; a video-generation provider is needed for moving character animation.
 
 ## YouTube OAuth
 Enable YouTube Data API v3 in Google Cloud, create OAuth Desktop credentials, save as `secrets/client_secret.json`, then run `python scripts/youtube_auth.py` on a machine with a browser. This writes `secrets/token.json`. Upload defaults to private. Test privately first.
